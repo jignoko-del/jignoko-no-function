@@ -36,7 +36,6 @@ async function slack(slack_api_token,channel,oldest) {
         });
 
         return JSON.stringify({result: "1",ts: ts_oldest,threads: threads.messages})
-
     } catch (error) {
         console.error(error);
     }
@@ -54,6 +53,6 @@ app.http('httpTrigger1', {
 
         const res = await slack(slack_api_token,channel,oldest)
 
-        return res;
+        return { body: `${res}` };
     }
 });
