@@ -1,11 +1,11 @@
 const { app } = require('@azure/functions');
-const { webclient } = require('@slack/web-api');
+const { WebClient } = require('@slack/web-api');
 
 async function slack(slack_api_token,channel,oldest) {
     try {
         
         // slackクラアントを作成
-        const client = new webclient(slack_api_token);
+        const client = new WebClient(slack_api_token);
 
         //latest を設定 
         const latest = Math.floor(Date.now() / 1000) - 5;
