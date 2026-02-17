@@ -27,7 +27,7 @@ async function slack(slack_api_token,channel,oldest) {
         const ts_oldest = history.messages[history.messages.length - 1].ts;
 
         // conversations.replies でスレッドを取得
-        const threads = await client.conversations.replies({
+        const thread = await client.conversations.replies({
             channel: channel,
             ts: ts_oldest,
             oldest: oldest,
@@ -35,7 +35,8 @@ async function slack(slack_api_token,channel,oldest) {
             limit: 999
         });
 
-        return JSON.stringify({result: "1",ts: ts_oldest,threads: threads.messages})
+        return JSON.stringify({result: "1",ts: ts_oldest,thread: thread.messages})
+
     } catch (error) {
         console.error(error);
     }
